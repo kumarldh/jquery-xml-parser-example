@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channel>
+	<title>LAMP Web Development Blog</title>
+	<link>http://www.kumarchetan.com/blog</link>
+	<item id="item1" somerandomattribute="attribute value">
+		<title>My first Android App or how to develop an Android App using PhoneGap and jQuery?</title>
+		<link>http://www.kumarchetan.com/blog/2012/01/14/my-first-android-app-or-how-to-develop-an-android-app-using-phonegap-and-jquery/</link>
+	</item>
+	<item id="item2">
+		<title>How not to do a CI controller? - Tips to develop CodeIgniter Controllers</title>
+		<link>http://www.kumarchetan.com/blog/2011/12/11/how-not-to-do-a-ci-controller-tips-to-develop-codeigniter-controllers/</link>
+	</item>
+</channel>
