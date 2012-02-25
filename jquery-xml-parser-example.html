@@ -35,51 +35,58 @@
 			$( function() {
 					var XMLURI = 'xml-feed.xml';
 					$.ajax({
-url: XMLURI,
-success: function(xml){
-var 
-feedtitle = $(xml).find('channel title:first'), //find first tag or node in XML that is named title
-feedlink = $(xml).find('channel link:first'), //find first tag or node in XML that is named link
-feedtitle = '<a href="' + feedlink.text() +'" class="feedlink">' + feedtitle.text() + '</a>',
-feedItem = '';
-$(xml).find( "item" ).each(
-	function(){
-	var item = $(this), 
-	title =  item.find('title').text(),
-	link =  item.find('link').text(),
-	itemid =  item.attr('id');//get an attribute
-	//you can log all attributes
-	//console.log(item[0].attributes);
-	feedItem = feedItem + '<div class="feeditem">';
-	feedItem = feedItem + '<a href="' + link + '" class="feeditemlink">';
-	feedItem = feedItem + '<span class="feeditemtitle">' + title+ '</span>';
-	feedItem = feedItem + '</a>';
-	feedItem = feedItem + ' id = ' + itemid;
-	feedItem = feedItem + '</div>';
-	});
-$('#feedheader').html(feedtitle);
-$('#content').append(feedItem);
-},
-error: function(){
-		   $('#feedheader').("PC LOAD LETTER - #http://www.youtube.com/watch?feature=player_detailpage&v=WUUptX0i55g#t=43s");
-	   },
-dataType: "xml"
-});
-});
-
-</script>
-
+                        url: XMLURI,
+                        success: function(xml){
+                            var feedtitle = $(xml).find('channel title:first'), //find first tag or node in XML that is named title
+                            feedlink = $(xml).find('channel link:first'), //find first tag or node in XML that is named link
+                            feedtitle = '<a href="' + feedlink.text() +'" class="feedlink">' + feedtitle.text() + '</a>',
+                            feedItem = '';
+                            //The xpath way
+                            $(xml).find( "channel>item" ).each(
+                                function(){
+                                    var item = $(this), 
+                                    title =  item.find('title').text(),
+                                    link =  item.find('link').text(),
+                                    itemid =  item.attr('id');//get an attribute
+                                    console.log(title);
+                                    console.log(link);
+                                    console.log('The attribute value "' + itemid + '".');
+                                }
+                            );
+                            //The other way around.
+                            $(xml).find( "item" ).each(
+                                function(){
+                                    var item = $(this), 
+                                    title =  item.find('title').text(),
+                                    link =  item.find('link').text(),
+                                    itemid =  item.attr('id');//get an attribute
+                                    //you can log all attributes
+                                    //console.log(item[0].attributes);
+                                    feedItem = feedItem + '<div class="feeditem">';
+                                    feedItem = feedItem + '<a href="' + link + '" class="feeditemlink">';
+                                    feedItem = feedItem + '<span class="feeditemtitle">' + title+ '</span>';
+                                    feedItem = feedItem + '</a>';
+                                    feedItem = feedItem + ' id = ' + itemid;
+                                    feedItem = feedItem + '</div>';
+                                }
+                            );
+                            $('#feedheader').html(feedtitle);
+                            $('#content').append(feedItem);
+                        },
+                        error: function(){
+                            $('#feedheader').("PC LOAD LETTER - #http://www.youtube.com/watch?feature=player_detailpage&v=WUUptX0i55g#t=43s");
+                        },
+                        dataType: "xml"
+                    });
+            });
+        </script>
 </head>
-
-
 <body>
 	<div data-role="page" id="home">
 		<div data-role="header">
 			<h1 id="feedheader">Loading...</h1>
 		</div>
-		<div data-role="content" id="content">
-		</div>
+		<div data-role="content" id="content">&nbsp;</div>
 	</div>
 </body>
-
 </html>
